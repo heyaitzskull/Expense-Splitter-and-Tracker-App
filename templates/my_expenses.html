@@ -1,0 +1,52 @@
+{% extends"base.html"%}
+
+{% block body %}
+
+    <div class="my_expenses">
+        <div class="home">
+            <a href="/"> Home </a>
+        </div>
+
+        <h1 class="dashboard_welcome">{{user.name}}, here are the expenses you added </h1>
+        
+        
+        {% if expenses %}
+        
+            <div class="expense_container">
+                
+                {%for expense in expenses%}
+
+                    <a id="edit_ex" href="/edit_expense/{{user.id}}/{{expense.id}}">Edit</a>
+                    <a id="del_ex" href="/delete_expense/{{user.id}}/{{expense.id}}" onclick="return confirm('Are you sure you want to delete this expense?');">Delete</a>
+
+                    <div class="each_expense">
+
+                        <text style="color:green;">{{expense.title}}</text>,
+                        
+                        <text style="color:red;">${{expense.cost}}</text>,
+                        
+                        <text style="color:orange;">Assigned on: 
+                        {{expense.assigned_on.strftime("%B %d, %Y")}}</text>,
+                        <text style="color:brown;">
+                        Due by:
+                        {{expense.due_by.strftime("%B %d, %Y")}} </text>
+
+                        {% if expense.note%}
+                            , <text style="color:magenta;">Note: 
+                            {{expense.note}}</text>
+                        {%endif%}
+  
+                    </div>
+
+
+                {%endfor%}
+            </div>
+        
+        {%else%}
+
+            <p class="sub-title"> Looks like you haven't added any expenses yet </p>
+
+        {%endif%}
+
+    </div>
+{% endblock %}

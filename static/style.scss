@@ -1,0 +1,592 @@
+
+body {
+    background-color: pink;
+    display: flex;
+    min-height: 50vh; // full viewport height
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+::placeholder {
+    font-family: "Jersey 20", sans-serif;
+    font-size: 18px;
+   
+}
+
+input[type="text"] {
+    font-family: "Jersey 20", sans-serif;
+    font-size: 18px;
+    color: rgb(160, 19, 97);
+ 
+}
+
+.home {
+    font-size: 20px;
+    font-family: "Jersey 20", sans-serif;
+
+}
+
+.home_main {
+    display: flex;
+    justify-content: center; // centers .home_content horizontally
+    align-items: center;    
+    gap: 10px; //space between box and image 
+
+}
+
+.home_content, .dashboard_content, .expense_view, .add_expense_view, .edit_content, .my_expenses {
+    background-color: white;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    width: 80%;
+    margin-top: 50px;
+    margin-left: 50px;
+    height: 570px;
+    max-width: 700px;
+
+}
+
+.girl {
+   margin-top: 100px;
+}
+
+.welcome, .dashboard_welcome, .expense_intro, .add_expense_title, .edit_title{
+    font-size: 40px;
+    // font-family: "Lilita One", cursive;
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 350;
+    color: rgb(160, 19, 97);
+    
+}
+
+.astrik{
+    color:red; 
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+}
+
+.my_expenses_title {
+    color: pink;
+}
+
+#name_home {
+    font-size: 20px;
+    padding: 10px;
+    
+}
+
+.names_table {
+    height: auto;
+    width: auto;
+    max-height: 260px;
+    min-height: 260px;
+
+    padding: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    
+    overflow-y: auto; 
+    scrollbar-width: none;
+    border-radius: 15px;
+    border: 15px solid #ffb6c1; /* light pink border */
+    border-width: 5px;
+
+    background-image: url("/static/images/heart.png"); /* update the path */
+    background-size: cover;        /* scale image to cover the box */
+    background-position: center;   /* center the image */
+    background-repeat: no-repeat;
+
+}
+
+.each_expense {
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 15px solid #ffffff; /* light pink border */
+    border-width: 5px;
+    margin-bottom: 10px;
+    font-family: "Jersey 20", sans-serif;
+    background-color: white;
+   
+}
+
+.expense_container {
+    margin-top: 60px;
+    height: auto;
+    min-width: auto;
+    max-height: 350px;
+    min-height: 250px;
+
+    padding: 20px;
+
+    overflow-x: auto; 
+    scrollbar-width: none;
+    border-radius: 15px;
+    border: 15px solid #b6e3ff; /* light pink border */
+    border-width: 5px;
+    background-color: #b6e3ff;
+}
+
+#name {
+    padding: 12px 20px;
+    border: 4px solid #ffb6c1; /* light pink border */
+    border-radius: 30px;
+    background-color: #fff0f5; /* lavender blush/pink background */
+    font-size: 16px;
+    color: #a02b61; /* rose/magenta text color */
+    outline: none;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3); /* soft pink glow */
+    margin-top: 20px;
+}
+
+#expense_name, #expense_cost, #due_by, #assign_to, #note {
+   
+    padding: 7px 20px;
+    border: 4px solid rgb(42, 124, 165);; /* light pink border */
+    border-radius: 30px;
+    background-color: #f8f4ff; /* lavender blush/pink background */
+    font-size: 16px;
+    color: rgb(160, 19, 97);
+    outline: none;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3); /* soft pink glow */
+    margin-top: 20px;
+    margin-right: 20px
+}
+
+#btn_done_expense {
+    border: 4px solid #79dd6b; /* light pink border */
+    border-radius: 5px;
+    background-color: #79dd6b; /* lavender blush/pink background */
+    font-size: 16px;
+    color: white;
+    margin-top: 30px;
+    min-width: 80px;
+    width: auto;
+    height: 40px;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+}
+
+#btn_done_expense:hover {
+    background-color: #4ab33c; /* lavender blush/pink background */
+    border: 4px solid #4ab33c; /* light pink border */
+}
+
+.btn_done_name {
+    border: 4px solid #79dd6b; /* light pink border */
+    border-radius: 5px;
+    background-color: #79dd6b; /* lavender blush/pink background */
+    font-size: 16px;
+    color: white;
+    margin-top: 30px;
+    margin-left: 10px;
+    min-width: 80px;
+    width: auto;
+    height: 40px;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+}
+.btn_done_name:hover {
+    background-color: #4ab33c; /* lavender blush/pink background */
+    border: 4px solid #4ab33c; /* light pink border */
+}
+
+#add_title {
+    color: rgb(222, 113, 58);
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 25px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+#add_assign {
+    color: rgb(222, 113, 58);
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 25px;
+    text-decoration: none;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+#btn_add_roommate {
+    border: 4px solid #ffb6c1; /* light pink border */
+    border-radius: 5px;
+    background-color: #ffb6c1;; /* lavender blush/pink background */
+    font-size: 16px;
+    color: white;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+    width: auto;
+    height: 40px;
+    margin-left: 10px;
+}
+
+#btn_add_roommate:hover {
+    background-color: #a02b61; /* lavender blush/pink background */
+    border: 4px solid #a02b61; /* light pink border */
+}
+
+.adding_roommate {
+    justify-content: center;
+    align-items: center;
+}
+
+.names_table table {
+    border-collapse: separate;
+    border-spacing: 15px 15px; /* 15px vertical spacing between rows */
+    width: 50%;
+}
+
+#name_home {
+    border: 3px solid #8fddff;
+    padding: 10px;
+    width: auto;
+    min-width: 150px;
+    text-align: center;
+    background-color: #8fddff; /* optional: gives a card look */
+    border-radius: 10px;     /* optional: soft corners */
+}
+#name_home:hover {
+    border: 3px solid #43caff;
+    background-color: #43caff; /* optional: gives a card look */
+    
+}
+
+#edit_name {
+    border: 1px solid #fde25e;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff0a7; /* optional: gives a card look */
+    border-radius: 30px;     /* optional: soft corners */
+}
+
+#edit_name:hover {
+    border: 1px solid #fbdf52;
+    background-color: #fbdf52; /* optional: gives a card look */
+    
+}
+
+#del_name {
+    border: 1px solid #ff9a9a;
+    padding: 10px;
+    text-align: center;
+    background-color: #ff9a9a; /* optional: gives a card look */
+    border-radius: 20px;     /* optional: soft corners */
+}
+
+#del_name:hover {
+    border: 1px solid #fa4646;
+    background-color: #fa4646; /* optional: gives a card look */
+    
+}
+
+#name_text {
+    color: brown;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-decoration: none;
+}
+
+#edit_name_text {
+    color: brown;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-decoration: none;
+}
+
+#del_name_text {
+    color: brown;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-decoration: none;
+}
+
+.expense_box {
+    border-radius: 15px;
+    border: 15px solid #214163; /* light pink border */
+    border-width: 5px;
+    // box-shadow: 0 4px 12px rgba(115, 143, 114, 0.2);
+    min-width: 150px;
+    max-width: 150px;
+    height: 100px;
+    background-color: #6ac6ff7d;
+    margin-left: 10px;
+}
+
+.curr_box {
+    
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;  
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+
+    border-radius: 15px;
+    border: 5px solid #ffb6c1;
+    background-color: rgba(254, 186, 240, 0.49);
+
+    // background-image: url("/static/images/pattern.png"); /* update the path */
+    // background-size: cover;        /* scale image to cover the box */
+    // background-position: center;   /* center the image */
+    // background-repeat: no-repeat;
+}
+
+.no_msg {
+    font-size: 25px;
+    color: rgb(160, 19, 97);
+    margin-left: 20px;
+    font-family: "Jersey 20", sans-serif;
+}
+
+.sub-title {
+    font-size: 20px;
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 100;
+
+}
+
+.curr_title {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 23px;
+    padding: 5px;
+    margin-top: 7px;
+}
+
+
+.curr_cost {
+    color: rgb(255, 27, 27);
+    text-align: center;
+    
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+}
+
+.btn_add_my {
+    justify-content: center;
+}
+
+#btn_add_expense {
+    border: 4px solid #79dd6b; /* light pink border */
+    border-radius: 5px;
+    background-color: #79dd6b; /* lavender blush/pink background */
+    font-size: 16px;
+    color: white;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+    width: auto;
+    height: 40px;
+    margin-top: 10px;
+}
+
+#btn_add_expense:hover {
+    background-color: #4ab33c; /* lavender blush/pink background */
+    border: 4px solid #4ab33c; /* light pink border */
+} 
+
+
+#btn_my_expenses {
+    border: 4px solid #ffb6c1; /* light pink border */
+    border-radius: 5px;
+    background-color: #ffb6c1; /* lavender blush/pink background */
+    font-size: 16px;
+    color: white;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+    width: auto;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+#btn_my_expenses:hover {
+    background-color: #a02b61; /* lavender blush/pink background */
+    border: 4px solid #a02b61; /* light pink border */
+}
+
+.expense_body {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+
+}
+
+.incomplete {
+    color: red;
+}
+
+.cost_text {
+    color: red;
+    margin-top: 20px;
+    padding:10px;
+}
+
+#btn_pay {
+    border: 4px solid #ffb6c1; /* light pink border */
+    border-radius: 5px;
+    background-color: #ffb6c1; /* lavender blush/pink background */
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+
+    width: auto;
+    height: 40px;
+}
+
+#btn_pay:hover {
+    background-color: #a02b61; /* lavender blush/pink background */
+    border: 4px solid #a02b61;
+}
+
+#btn_venmo {
+    border: 4px solid #b6f3ff; /* light pink border */
+    border-radius: 5px;
+    background-color: #b6f3ff; /* lavender blush/pink background */
+    font-size: 16px;
+    color: black;
+    margin-bottom: 20px;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+    width: auto;
+    height: 40px;
+}
+
+#btn_venmo:hover {
+    background-color: #4ac2f1; /* lavender blush/pink background */
+    border: 4px solid #4ac2f1; /* light pink border */
+    color: white;
+}
+
+#btn_cashapp {
+    border: 4px solid #91ffa3; /* light pink border */
+    border-radius: 5px;
+    background-color: #91ffa3; /* lavender blush/pink background */
+    font-size: 16px;
+    color: black;
+    margin-bottom: 20px;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+
+    width: auto;
+    height: 40px;
+}
+
+#btn_cashapp:hover {
+    background-color: #49e670; /* lavender blush/pink background */
+    border: 4px solid #49e670; /* light pink border */
+    color: white;
+}
+
+#btn_paypal {
+    border: 4px solid #85a1ef; /* light pink border */
+    border-radius: 5px;
+    background-color: #85a1ef; /* lavender blush/pink background */
+    font-size: 16px;
+    color: black;
+    margin-bottom: 20px;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+
+    width: auto;
+    height: 40px;
+}
+
+#btn_paypal:hover {
+    background-color: #497be6; /* lavender blush/pink background */
+    border: 4px solid #497be6; /* light pink border */
+    color: white;
+}
+#btn_complete {
+
+    border: 4px solid #79dd6b; /* light pink border */
+    border-radius: 5px;
+    background-color: #79dd6b;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 25px;
+    width: auto;
+    height: 40px;
+}
+
+#btn_complete:hover {
+   background-color: #4ab33c; /* lavender blush/pink background */
+   border: 4px solid #4ab33c;
+}
+
+.expense_btns {
+    text-align: center;
+}
+
+/* Outer container */
+.choices {
+  min-width: 250px;
+  max-width: 500px;
+  margin-top: 20px;
+  font-weight: 100;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Inner box (visible part) */
+.choices__inner {
+  min-height: 40px !important;  /* Reduce height */
+  padding: 4px 8px !important;  /* Reduce padding */
+  font-size: 14px;              /* Adjust font size */
+}
+
+/* Placeholder text */
+.choices__placeholder {
+  font-size: 14px;             /* Match font size */
+}
+
+/* Dropdown arrow */
+.choices:after {
+  top: 50% !important;         /* Center arrow vertically */
+  right: 10px !important;      /* Adjust arrow position */
+}
+
+#edit_ex {
+    color:#5b5b5b;
+    font-family: "Jersey 20", sans-serif;
+    margin-left: 570px;
+    font-size: 17px;
+}
+#del_ex {
+    color: rgb(255, 82, 82);
+    margin-left: 5px;
+    font-family: "Jersey 20", sans-serif;
+    font-size: 17px;
+}

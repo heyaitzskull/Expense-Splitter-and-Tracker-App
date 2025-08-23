@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+
+<Title> Add expense </Title>
+
+{% endblock %}
+
+{% block body %} 
+
+<div class="add_expense_view">
+
+    <div class="home">
+        <a href="/"> Home </a>
+    </div>
+
+{% if edit_ex%}
+
+<form action="/edit_expense/{{user.id}}/{{edit_ex.id}}" method="POST">
+    
+    
+    
+    <h1 class="add_expense_title"> Editing expense "{{edit_ex.title}}"</h1>
+
+        <div >
+            <text class="astrik">*</text>
+            <Label id="add_title"> Title</Label>
+            <input value="{{edit_ex.title}}" placeholder="e.g. gas bill" type="text" name="expense_name" id="expense_name" required/>
+        </div>
+        <div>
+            <text class="astrik">*</text>
+            <Label id="add_title"> Cost </Label>
+
+            <input value="{{edit_ex.cost}}" placeholder="e.g. 20.93" type="number" min="0.00" max="10000.00" step="0.01" name="expense_cost" id="expense_cost" required />
+        </div>
+
+        <div>
+            <text class="astrik">*</text>
+            <Label id="add_title"> Due By </Label>
+            <input value={{edit_ex.due_by}} type="date" name="due_by" id="due_by" required/>
+        </div>
+
+        <div id= "test" style="display:flex; flex-direction: row;">
+            <div style="margin-top: 20px;">
+                <text class="astrik">*</text>   
+                <Label id="add_assign"> Assign to </Label>
+            </div>
+
+            <select id="assign" name="assign[]" multiple="multiple" required>
+
+                {%for name in all_names%}
+
+                    <option id="assign_to" value="{{name.name}}"
+                        {% if name in assigned_users %} selected {% endif %}>
+                        {{ name.name }}
+                    </option>
+                {%endfor%}
+            </select>
+        </div>
+
+        <div>
+            <label id="add_title"> Note (optional) </label>
+            
+            <input value="{{edit_ex.note}}" placeholder="e.g. send on venmo" type="text" name="note" id="note" >
+        </div>
+
+        <!-- javascript for searching and selecting multiple roommates -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const multipleSelect = document.getElementById('assign');
+                const choices = new Choices(multipleSelect, {
+                    removeItemButton: true,  // allows removing selected items easily
+                    searchResultLimit: 5,
+                    searchPlaceholderValue: 'Search roommates...',
+                    placeholderValue: 'Select roommates',
+                    id: "select"
+                });
+            });
+        </script>
+
+        <!-- <form action="/dashboard/{{user.id}}", method="GET"> -->
+            <input type="submit" value="Done Editing" id="btn_done_expense"/>
+        <!-- </form> -->
+
+        
+</form>
+
+{% else%}
+    <form action="/add_expense/{{user.id}}" method="POST">
+    
+        <h1 class="add_expense_title"> {{user.name}} is adding an expense </h1>
+
+            <div >
+                <text class="astrik">*</text>
+                <Label id="add_title"> Title </Label>
+                <input placeholder="e.g. gas bill" type="text" name="expense_name" id="expense_name" required/>
+            </div>
+            <div>
+                <text class="astrik">*</text>
+                <Label id="add_title"> Cost </Label>
+
+                <input placeholder="e.g. 20.93" type="number" min="0.00" max="10000.00" step="0.01" name="expense_cost" id="expense_cost" required />
+            </div>
+
+            <div>
+                <text class="astrik">*</text>
+                <Label id="add_title"> Due By </Label>
+                <input type="date" name="due_by" id="due_by" required/>
+            </div>
+
+            <div id= "test" style="display:flex; flex-direction: row;">
+                <div style="margin-top: 20px;">
+                    <text class="astrik">*</text>   
+                    <Label id="add_assign"> Assign to </Label>
+                </div>
+                <select id="assign" name="assign[]" multiple="multiple" required>
+
+                    {%for name in all_names%}
+
+                        <option id="assign_to" value="{{name.name}}"> {{name.name}} </option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div>
+                <label id="add_title"> Note (optional) </label>
+                
+                <input placeholder="e.g. send on venmo" type="text" name="note" id="note">
+            </div>
+
+            <!-- javascript for searching and selecting multiple roommates -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const multipleSelect = document.getElementById('assign');
+                    const choices = new Choices(multipleSelect, {
+                        removeItemButton: true,  // allows removing selected items easily
+                        searchResultLimit: 5,
+                        searchPlaceholderValue: 'Search roommates...',
+                        placeholderValue: 'Select roommates',
+                        id: "select"
+                    });
+                });
+            </script>
+
+            <!-- <form action="/dashboard/{{user.id}}", method="GET"> -->
+                <input type="submit" value="Done" id="btn_done_expense"/>
+            <!-- </form> -->
+
+
+    </form>
+
+
+{% endif%}
+
+
+</div>
+
+{% endblock %}

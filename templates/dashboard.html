@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block head %} 
+
+    <title> Dashboard </title>
+
+{% endblock %}
+
+
+{% block body %} 
+
+<div class="dashboard_content">
+    <div class="home">
+            <a href="/"> Home </a>
+        </div>
+
+    <h1 class="dashboard_welcome"> Hi {{user.name}}, here are your assigned expenses </h1>
+
+    <!--{% if user.expenses | length < 1 %}
+
+        <h2 class="sub-title"> Looks like you have no expenses, click to add an expense </h2>
+    
+   {% endif %} -->
+
+        <h3 class="sub-title"> Current expenses</h3>
+        {% set incomplete_expenses = [] %}
+        {% set complete_expenses = [] %}
+
+        {% for expense in all_expenses %}
+            {% if expense.completed == 0 %}
+                {% do incomplete_expenses.append(expense) %}
+            {% else %}
+                {% do complete_expenses.append(expense) %}
+            {% endif %}
+        {% endfor %}
+
+
+        <div class="curr_box" style="display:flex; flex-direction: row;">
+        {% if incomplete_expenses%}
+            {% for expense in all_expenses %}
+                 {% if expense.completed == 0 %}
+                
+                <div class="expense_box">
+                    <!-- when expense is clicked, user's id is sent over-->
+                    <a href="/expense_view/{{user.id}}/{{expense.id}}">
+
+                        <div class="curr_title">
+                            {{expense.title}}
+                            <br>
+                        </div>
+                        <div class="curr_cost";>
+                            ${{expense.cost}}
+                            <br>  
+                        </div>  
+                        
+                    </a>
+                    
+                </div>
+                <br>    
+                {%endif%}
+            
+            {% endfor %}
+        {% else %}
+                <p class="no_msg"> No current expenses... </p>
+        {% endif%}
+        </div>
+
+        <h3 class="sub-title"> Completed Expenses </h3>
+        
+
+        <div class="curr_box" style="display:flex; flex-direction: row;">
+        {% if complete_expenses %}
+            {% for expense in all_expenses %}
+                {% if expense.completed == 1 %}
+                    
+
+                    <div class="expense_box">
+                    <!-- when expense is clicked, user's id is sent over-->
+                    <a href="/expense_view/{{user.id}}/{{expense.id}}">
+
+                        <div class="curr_title">
+                            {{expense.title}}
+                            <br>
+                        </div>
+                        <div class="curr_cost" style="color: rgba(155, 155, 155, 1)">
+                            ${{expense.cost}}
+                            <br>  
+                        </div>  
+                        
+                    </a>
+                    
+                </div>
+                <br>
+                {% endif %}
+            {% endfor %}
+
+        {%else%}
+            <p class="no_msg"> No expenses have been completed yet... </p>
+        {% endif %}
+        </div>
+
+    
+
+    <div class= "btn_add_my" style="display:flex; flex-direction: row;">
+        <form action="/add_expense/{{user.id}}", method="GET">
+            <input type="submit", value="Add Expense", id="btn_add_expense">
+        </form>
+
+        <form action="/my_expenses/{{user.id}}">
+            <input type="submit", value="My Expenses", id="btn_my_expenses">
+        </form>
+    </div>
+
+<div>
+{% endblock %}

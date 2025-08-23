@@ -1,0 +1,91 @@
+{% extends "base.html"%}
+   
+{% block body %} 
+
+<div class="expense_view">
+    <div class="home">
+            <a href="/"> Home </a>
+        </div>
+    <div class="expense_body">
+
+        <h1 class="expense_intro"> {{user.name}}'s expense: {{expense.title}} </h1>
+
+        {% if expense.completed == 0 %}
+           <p class="incomplete"> Not Complete <p>
+            <div class="cost_text">
+                ${{expense.cost}}
+            </div>
+        {%else%}
+            <p class = "complete" style="color: rgba(6, 178, 37, 1)"> Complete <p>
+            <div class="cost_text" style="color: rgba(6, 178, 37, 1)">
+                ${{expense.cost}}
+            </div>
+        {%endif%}
+
+        
+        Assigned on: {{expense.assigned_on.strftime('%B %d, %Y')}}
+        <br>
+        Assigned by: {{ expense.assigned_by}}
+        <br>
+        
+        Payment Due By: {{expense.due_by.strftime('%B %d, %Y')}}
+        <br>
+        {%if expense.note%}
+            Note: {{expense.note}}
+        {%endif%}
+
+    </div>
+
+    <br>
+
+    {% if expense.completed == 0%}
+        <div class="expense_btns">
+        
+            <input type="button" id="btn_pay" value="Pay Now">
+            <a href="https://account.venmo.com/login">
+                <input type="button" id="btn_venmo" value="Venmo" hidden>
+            </a>
+
+            <a href="https://cash.app/login">
+                <input type="button" id="btn_cashapp" value="CashApp" hidden>
+            </a>
+
+            <a href="https://www.sandbox.paypal.com/signin/">
+                <input type="button" id="btn_paypal" value="PayPal" hidden>
+            </a>
+            
+            <script>
+                var pay = document.getElementById("btn_pay")
+                var venmo = document.getElementById("btn_venmo")
+                var cashapp = document.getElementById("btn_cashapp")
+                var paypal = document.getElementById("btn_paypal")
+                var click = 0;
+
+                pay.onclick = function () {
+                    if (click == 0) {
+                        venmo.hidden = false;
+                        cashapp.hidden = false;
+                        paypal.hidden = false;
+                        click = 1;
+
+                    } else {
+                        venmo.hidden = true;
+                        cashapp.hidden = true;
+                        paypal.hidden = true;
+                        click = 0;
+                    }
+                };  
+
+            </script>
+
+            <br>
+            <form action="/complete/{{user.id}}/{{expense.id}}" method = "POST">
+                <input type="submit" id="btn_complete" value="Mark Complete">
+            </form>
+        </div>
+    {% endif %}
+
+    </div>
+
+
+{% endblock %}
