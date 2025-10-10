@@ -1,5 +1,5 @@
-## Expense Splitter and Tracker App
-# Created by: Prativa Khatiwada
+# Expense Splitter and Tracker App
+Created by: Prativa Khatiwada
 
 A web application to help roommates manage and split expenses efficiently, with support for external payment redirects.
 
