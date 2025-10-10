@@ -19,14 +19,14 @@ RESTful API supporting CRUD operations and secure session management
 
 ### Installation
 
-**Clone the repository:**
+**Clone the repository:** <br>
 git clone <repository_url><br>
 cd expense-tracker
 
-**Create a virtual environment and install dependencies:**
+**Create a virtual environment and install dependencies:** <br>
 python -m venv venv<br>
 source venv/bin/activate  (On Windows: venv\Scripts\activate)<br>
 pip install -r requirements.txt
 
-**Run the Flask application:**
+**Run the Flask application:** <br>
 flask run
