@@ -30,3 +30,5 @@ pip install -r requirements.txt
 
 **Run the Flask application:** <br>
 flask run
+
+bugs: when multiple users are assigned the same bill, when ONE user marks it complete, it sets it complete for EVERYONE. need to fix.
