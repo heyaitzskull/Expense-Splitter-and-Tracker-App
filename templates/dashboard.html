@@ -40,22 +40,26 @@
             {% for expense in all_expenses %}
                  {% if expense.completed == 0 %}
                 
-                <div class="expense_box">
-                    <!-- when expense is clicked, user's id is sent over-->
-                    <a href="/expense_view/{{user.id}}/{{expense.id}}">
+                <a href="/expense_view/{{user.id}}/{{expense.id}}">
 
-                        <div class="curr_title">
-                            {{expense.title}}
-                            <br>
-                        </div>
-                        <div class="curr_cost";>
-                            ${{expense.cost}}
-                            <br>  
-                        </div>  
+                    <div class="expense_box">
+                        <!-- when expense is clicked, user's id is sent over-->
+
+                            <div class="curr_title">
+                                {% if expense.title|length < 14 %}
+                                    {{ expense.title }}
+                                {% else %}
+                                    {{ expense.title[:10] }}...
+                                {% endif %}
+                                <br>
+                            </div>
+                            <div class="curr_cost";>
+                                ${{expense.cost}}
+                                <br>  
+                            </div>  
                         
-                    </a>
-                    
-                </div>
+                    </div>
+                </a>
                 <br>    
                 {%endif%}
             
@@ -73,23 +77,25 @@
             {% for expense in all_expenses %}
                 {% if expense.completed == 1 %}
                     
-
-                    <div class="expense_box">
-                    <!-- when expense is clicked, user's id is sent over-->
                     <a href="/expense_view/{{user.id}}/{{expense.id}}">
+                        <div class="expense_box">
+                        <!-- when expense is clicked, user's id is sent over-->
+                            <div class="curr_title">
 
-                        <div class="curr_title">
-                            {{expense.title}}
-                            <br>
-                        </div>
-                        <div class="curr_cost" style="color: rgba(155, 155, 155, 1)">
-                            ${{expense.cost}}
-                            <br>  
-                        </div>  
+                                {% if expense.title|length < 14 %}
+                                    {{ expense.title }}
+                                {% else %}
+                                    {{ expense.title[:10] }}...
+                                {% endif %}
+                                <br>
+                            </div>
+                            <div class="curr_cost" style="color: rgba(225, 255, 165, 0.89)">
+                                ${{expense.cost}}
+                                <br>  
+                            </div>  
                         
-                    </a>
-                    
-                </div>
+                    </div>
+                </a>
                 <br>
                 {% endif %}
             {% endfor %}

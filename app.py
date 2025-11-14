@@ -329,7 +329,7 @@ def my_expenses(user_id:int):
 # ----------------------------------------------------------
 
 # thing to add maybe:
-# DONE::: music -> able to turn on and off *yes-
+# did but music refreshes every new page so i might remove it ::: music -> able to turn on and off *yes-
 # back button *yes - try today ?
 # lady who changes expression on each page *maybe later
 

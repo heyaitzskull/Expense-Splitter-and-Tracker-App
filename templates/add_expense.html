@@ -25,7 +25,9 @@
         <div >
             <text class="astrik">*</text>
             <Label id="add_title"> Title</Label>
-            <input value="{{edit_ex.title}}" placeholder="e.g. gas bill" type="text" name="expense_name" id="expense_name" required/>
+            <input value="{{edit_ex.title}}" placeholder="e.g. gas bill" type="text" name="expense_name" id="expense_name" maxlength= "50" required/>
+            <p id="name_warning" style="color: red; display: none; font-size: 14px;">
+
         </div>
         <div>
             <text class="astrik">*</text>
@@ -93,7 +95,9 @@
             <div >
                 <text class="astrik">*</text>
                 <Label id="add_title"> Title </Label>
-                <input placeholder="e.g. gas bill" type="text" name="expense_name" id="expense_name" required/>
+                <input placeholder="e.g. gas bill" type="text" name="expense_name" id="expense_name" maxlength="50" required/>
+                <p id="name_warning" style="color: red; display: none; font-size: 14px;">
+                </p>
             </div>
             <div>
                 <text class="astrik">*</text>
@@ -151,6 +155,31 @@
 
 
 {% endif%}
+
+<script>
+    const input = document.getElementById("expense_name");
+    const warning = document.getElementById("name_warning");
+
+    input.addEventListener("input", function () {
+
+        // Empty input
+        if (this.value.length === 0) {
+            warning.textContent = "Please fill out this field";
+            warning.style.display = "block";
+        }
+
+        // Max length reached
+        else if (this.value.length >= this.maxLength) {
+            warning.textContent = "Maximum " + this.maxLength + " characters allowed.";
+            warning.style.display = "block";
+        }
+
+        // Valid input
+        else {
+            warning.style.display = "none";
+        }
+    });
+</script>
 
 
 </div>

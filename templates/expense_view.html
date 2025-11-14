@@ -31,15 +31,17 @@
         
         Payment Due By: {{expense.due_by.strftime('%B %d, %Y')}}
         <br>
-        {%if expense.note%}
-            Note: {{expense.note}}
-        {%endif%}
+        <div class="note-container">
+            {%if expense.note%}
+                Note: {{expense.note}}
+            {%endif%}
+        </div>
 
     </div>
 
     <br>
 
-    {% if expense.completed == 0%}
+    {% if expense.completed == 0 %}
         <div class="expense_btns">
         
             <input type="button" id="btn_pay" value="Pay Now">
