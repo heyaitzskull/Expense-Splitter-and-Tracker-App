@@ -37,7 +37,7 @@
         <div>
             <text class="astrik">*</text>
             <Label id="add_title"> Due By </Label>
-            <input value={{edit_ex.due_by}} type="date" name="due_by" id="due_by" required/>
+            <input value="{{edit_ex.due_by.strftime('%Y-%m-%d') if edit_ex.due_by else ''}}" type="date" name="due_by" id="due_by" required/>
         </div>
 
         <div id= "test" style="display:flex; flex-direction: row;">
@@ -50,7 +50,7 @@
 
                 {%for name in all_names%}
 
-                    <option id="assign_to" value="{{name.name}}"
+                    <option id="assign_to" value="{{name.id}}"
                         {% if name in assigned_users %} selected {% endif %}>
                         {{ name.name }}
                     </option>
@@ -78,7 +78,7 @@
             });
         </script>
 
-        <!-- <form action="/dashboard/{{user.id}}", method="GET"> -->
+        <!-- <form action="/dashboard/{{user.id}}" method="GET"> -->
             <input type="submit" value="Done Editing" id="btn_done_expense"/>
         <!-- </form> -->
 
@@ -117,7 +117,7 @@
 
                     {%for name in all_names%}
 
-                        <option id="assign_to" value="{{name.name}}"> {{name.name}} </option>
+                        <option id="assign_to" value="{{name.id}}"> {{name.name}} </option>
                     {%endfor%}
                 </select>
             </div>

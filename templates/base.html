@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"/>
 
     <!-- google font-->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Lilita+One&family=Meow+Script&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 
@@ -20,8 +20,49 @@
 </head>
 <body>
     
+    <div class="music-toggle" onclick="toggleYouTube()">
+        <img id="musicIcon" src='/static/images/volume.png' alt="toggle music"/>
+    </div>
+
+    <!-- Hidden YouTube player -->
+    <div id="youtube-player" style="position: fixed; bottom: 0; left: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
+        <iframe 
+            id="ytIframe"
+            width="1" 
+            height="1" 
+            src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&loop=1&playlist=jfKfPfyJRdk&controls=0&enablejsapi=1&mute=0" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        let isMuted = false;
+        
+        function toggleYouTube() {
+            const iframe = document.getElementById('ytIframe');
+            const icon = document.getElementById('musicIcon');
+            
+            if (isMuted) {
+                // Unmute
+                iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                icon.src = '/static/images/volume.png';
+                isMuted = false;
+            } else {
+                // Mute
+                iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                icon.src = '/static/images/mute.png';
+                isMuted = true;
+            }
+        }
+    </script>
+
     {% block body %} 
         
     {% endblock %}
+
+    
 </body>
 </html>

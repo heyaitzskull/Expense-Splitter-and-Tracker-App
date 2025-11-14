@@ -1,10 +1,22 @@
 body {
-  background-color: pink;
+  background-image: url("/static/images/pinkg.gif"); /* update the path */
+  /* background-size: contain;        scales image to cover entire area */
+  background-size: cover;
+  background-repeat: no-repeat; /* prevents tiling */
+  background-position: center;
   display: flex;
-  min-height: 50vh;
+  min-height: 100vh;
   margin: 0;
   justify-content: center;
   align-items: center;
+}
+
+.music-icon {
+  width: 50px;
+  height: auto;
+  margin-bottom: 600px;
+  margin-left: 100px;
+  margin-right: 20px;
 }
 
 a {
@@ -45,14 +57,20 @@ input[type=text] {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   width: 80%;
-  margin-top: 50px;
-  margin-left: 50px;
+  margin-top: 0px;
   height: 570px;
   max-width: 700px;
 }
 
 .girl {
   margin-top: 100px;
+}
+
+.no-roommates {
+  font-size: 25px;
+  font-family: "Pixelify Sans", sans-serif;
+  color: rgb(111, 111, 111);
+  margin-left: 20px;
 }
 
 .welcome, .dashboard_welcome, .expense_intro, .add_expense_title, .edit_title {
@@ -70,11 +88,6 @@ input[type=text] {
 
 .my_expenses_title {
   color: pink;
-}
-
-#name_home {
-  font-size: 20px;
-  padding: 10px;
 }
 
 .names_table {
@@ -136,7 +149,7 @@ input[type=text] {
   margin-top: 20px;
 }
 
-#expense_name, #expense_cost, #due_by, #assign_to, #note {
+#expense_name, #expense_cost, #assign_to, #note {
   padding: 7px 20px;
   border: 4px solid rgb(42, 124, 165); /* light pink border */
   border-radius: 30px;
@@ -148,6 +161,11 @@ input[type=text] {
   box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3); /* soft pink glow */
   margin-top: 20px;
   margin-right: 20px;
+  font-family: "Jersey 20", sans-serif;
+}
+
+#expense_name:focus, #expense_cost:focus, #assign_to:focus, #note:focus, #name:focus {
+  transform: scale(1.05);
 }
 
 #btn_done_expense {
@@ -167,6 +185,8 @@ input[type=text] {
 #btn_done_expense:hover {
   background-color: #4ab33c; /* lavender blush/pink background */
   border: 4px solid #4ab33c; /* light pink border */
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .btn_done_name {
@@ -187,6 +207,8 @@ input[type=text] {
 .btn_done_name:hover {
   background-color: #4ab33c; /* lavender blush/pink background */
   border: 4px solid #4ab33c; /* light pink border */
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 #add_title {
@@ -226,6 +248,8 @@ input[type=text] {
 #btn_add_roommate:hover {
   background-color: #a02b61; /* lavender blush/pink background */
   border: 4px solid #a02b61; /* light pink border */
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .adding_roommate {
@@ -241,22 +265,23 @@ input[type=text] {
 
 #name_home {
   border: 3px solid #8fddff;
-  padding: 10px;
   width: auto;
   min-width: 150px;
   text-align: center;
   background-color: #8fddff; /* optional: gives a card look */
   border-radius: 10px; /* optional: soft corners */
+  min-height: 50px;
 }
 
 #name_home:hover {
   border: 3px solid #43caff;
   background-color: #43caff; /* optional: gives a card look */
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 #edit_name {
   border: 1px solid #fde25e;
-  padding: 10px;
   text-align: center;
   background-color: #fff0a7; /* optional: gives a card look */
   border-radius: 30px; /* optional: soft corners */
@@ -265,11 +290,12 @@ input[type=text] {
 #edit_name:hover {
   border: 1px solid #fbdf52;
   background-color: #fbdf52; /* optional: gives a card look */
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 #del_name {
   border: 1px solid #ff9a9a;
-  padding: 10px;
   text-align: center;
   background-color: #ff9a9a; /* optional: gives a card look */
   border-radius: 20px; /* optional: soft corners */
@@ -278,9 +304,16 @@ input[type=text] {
 #del_name:hover {
   border: 1px solid #fa4646;
   background-color: #fa4646; /* optional: gives a card look */
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
-#name_text {
+.name_text_link {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  height: 100%;
   color: brown;
   font-family: "Pixelify Sans", sans-serif;
   font-optical-sizing: auto;
@@ -288,26 +321,26 @@ input[type=text] {
   text-decoration: none;
 }
 
-#edit_name_text {
+.edit_name_link, .del_name_link {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+  width: 100%;
+  height: 100%;
   color: brown;
   font-family: "Pixelify Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   text-decoration: none;
-}
-
-#del_name_text {
-  color: brown;
-  font-family: "Pixelify Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  text-decoration: none;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
 }
 
 .expense_box {
   border-radius: 15px;
-  border: 15px solid #214163; /* light pink border */
   border-width: 5px;
+  box-shadow: 2px 5px 2px #214163;
   min-width: 150px;
   max-width: 150px;
   height: 100px;
@@ -382,6 +415,8 @@ input[type=text] {
 #btn_add_expense:hover {
   background-color: #4ab33c; /* lavender blush/pink background */
   border: 4px solid #4ab33c; /* light pink border */
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 #btn_my_expenses {
@@ -401,6 +436,8 @@ input[type=text] {
 #btn_my_expenses:hover {
   background-color: #a02b61; /* lavender blush/pink background */
   border: 4px solid #a02b61; /* light pink border */
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .expense_body {
@@ -440,6 +477,8 @@ input[type=text] {
 #btn_pay:hover {
   background-color: #a02b61; /* lavender blush/pink background */
   border: 4px solid #a02b61;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 #btn_venmo {
@@ -459,6 +498,8 @@ input[type=text] {
   background-color: #4ac2f1; /* lavender blush/pink background */
   border: 4px solid #4ac2f1; /* light pink border */
   color: white;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 #btn_cashapp {
@@ -478,6 +519,8 @@ input[type=text] {
   background-color: #49e670; /* lavender blush/pink background */
   border: 4px solid #49e670; /* light pink border */
   color: white;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 #btn_paypal {
@@ -497,6 +540,8 @@ input[type=text] {
   background-color: #497be6; /* lavender blush/pink background */
   border: 4px solid #497be6; /* light pink border */
   color: white;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 #btn_complete {
@@ -515,6 +560,8 @@ input[type=text] {
 #btn_complete:hover {
   background-color: #4ab33c; /* lavender blush/pink background */
   border: 4px solid #4ab33c;
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .expense_btns {
@@ -551,7 +598,7 @@ input[type=text] {
 #edit_ex {
   color: #5b5b5b;
   font-family: "Jersey 20", sans-serif;
-  margin-left: 570px;
+  margin-left: 15px;
   font-size: 17px;
 }
 
@@ -560,4 +607,144 @@ input[type=text] {
   margin-left: 5px;
   font-family: "Jersey 20", sans-serif;
   font-size: 17px;
+}
+
+input[type=date] {
+  padding: 7px 20px;
+  border: 4px solid rgb(42, 124, 165);
+  border-radius: 30px;
+  background-color: #f8f4ff;
+  font-size: 16px;
+  color: rgb(104, 104, 104);
+  outline: none;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3);
+  margin-top: 20px;
+  margin-right: 20px;
+  font-family: "Jersey 20", sans-serif;
+  min-width: 200px;
+}
+
+/* when user selects a date (input becomes valid) */
+input[type=date]:valid {
+  color: rgb(160, 19, 97);
+}
+
+input[type=date]:focus {
+  transform: scale(1.05);
+}
+
+/* Outer container */
+.choices {
+  min-width: 250px;
+  max-width: 500px;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-family: "Jersey 20", sans-serif;
+  border-radius: 30px !important;
+  border: 4px solid rgb(42, 124, 165) !important;
+  height: 50px;
+}
+
+.choices__inner {
+  height: 20px !important;
+  padding: 8px 12px !important;
+  font-size: 16px;
+  background-color: #f8f4ff !important;
+  border: 0px !important;
+  border-radius: 30px !important;
+  box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3) !important;
+  transition: 0.3s ease;
+  margin-bottom: -15px;
+  margin-right: 20px;
+}
+
+.choices.is-focused .choices__inner {
+  height: 20px !important;
+  padding: 8px 12px !important;
+  font-size: 16px;
+  background-color: #f8f4ff !important;
+  border-radius: 30px !important;
+  border: 4px solid rgb(42, 124, 165) !important;
+  box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3) !important;
+  transition: 0.3s ease;
+  margin-bottom: -15px;
+  margin-right: 20px;
+}
+
+.choices.is-focused {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* Selected items (chips/tags) */
+.choices__item--selectable {
+  background-color: rgba(255, 182, 193, 0.3) !important;
+  color: rgb(160, 19, 97) !important;
+  border: 2px solid rgb(160, 19, 97) !important;
+  padding: 4px 10px !important;
+  border-radius: 20px !important;
+  margin: 3px !important;
+  font-family: "Jersey 20", sans-serif;
+  min-width: 50px;
+  max-width: 100%;
+}
+
+/* Remove button on selected items */
+.choices__button {
+  background-color: red !important;
+  border: none !important;
+  font-size: 10px !important;
+  padding: 0 5px !important;
+  opacity: 0.8;
+}
+
+/* Dropdown item hover */
+.choices__item--choice:hover,
+.choices__item--choice.is-highlighted {
+  background-color: #ffb0d6 !important;
+  color: rgb(160, 19, 97) !important;
+}
+
+/* Dropdown list */
+.choices__list--dropdown {
+  background-color: white !important;
+  border-radius: 15px;
+  border: 0px solid #ffb6c1 !important;
+}
+
+/* Search input inside dropdown */
+.choices__input {
+  background-color: #f8f4ff !important;
+  color: rgb(160, 19, 97) !important;
+  font-size: 16px !important;
+  padding: 8px !important;
+  border: 0px solid #ffb6c1 !important;
+  border-radius: 20px !important;
+  font-family: "Jersey 20", sans-serif;
+  min-width: 140px !important;
+}
+
+.music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 1001;
+  border-radius: 50%;
+  padding: 10px;
+  transition: 0.3s ease;
+}
+
+.music-toggle:hover {
+  transform: scale(1.5);
+}
+
+.music-toggle img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }/*# sourceMappingURL=style.css.map */

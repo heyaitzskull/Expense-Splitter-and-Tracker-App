@@ -66,7 +66,12 @@ class Expense(db.Model):
     title = db.Column(db.String(20))
     cost = db.Column(db.Numeric(10, 2), nullable=False)
     assigned_on = db.Column(db.DateTime, default=datetime.now(timezone.utc))
-    assigned_by = db.Column(db.String(20))
+    
+    # assigned_by = db.Column(db.String(20))
+    assigned_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    creator = db.relationship('User', backref='created_expenses')
+
+    
     due_by = db.Column(db.DateTime)
     note = db.Column(db.String(200))
     completed = db.Column(db.Integer, default=0) #1= true/complete, 0=false/incomplete
@@ -112,7 +117,8 @@ def deleteName(id:int):
     delete_user = User.query.get_or_404(id)
 
     try:
-        expenses_to_delete = Expense.query.filter_by(assigned_by=delete_user.name).all()
+        #used to be assigned_by=delete_user.name
+        expenses_to_delete = Expense.query.filter_by(assigned_by_id=delete_user.id).all()
         for expense in expenses_to_delete:
             db.session.delete(expense)
 
@@ -153,7 +159,7 @@ def edit_expense(user_id:int, expense_id:int):
         edit_ex.note = request.form.get("note")
         
 
-        new_assigned_names = request.form.getlist("assign[]")
+        new_assigned_ids = request.form.getlist("assign[]")
         
 
         try:
@@ -162,8 +168,8 @@ def edit_expense(user_id:int, expense_id:int):
             )
     
             # assigning each user the expense
-            for name in new_assigned_names:
-                assigned_user = User.query.filter_by(name=name).first()
+            for uid in new_assigned_ids:
+                assigned_user = User.query.get(int(uid))
                 if assigned_user:
                     edit_ex.assigned_users.append(assigned_user)
 
@@ -236,12 +242,12 @@ def add_expense(id:int):
         due_by = datetime.strptime(due_by_str, '%Y-%m-%d') if due_by_str else None
         note = request.form.get("note")
 
-        assigned_names = request.form.getlist("assign[]")
+        assigned_ids = request.form.getlist("assign[]")
 
         new_expense = Expense (
             title = title,
             cost = cost,
-            assigned_by=user.name,
+            assigned_by_id=user.id,
             due_by = due_by,
             note = note
         )
@@ -249,8 +255,8 @@ def add_expense(id:int):
         try:
 
             # assigning each user the expense
-            for name in assigned_names:
-                assigned_user = User.query.filter_by(name=name).first()
+            for uid in assigned_ids:
+                assigned_user = User.query.get(int(uid))
                 if assigned_user:
                     new_expense.assigned_users.append(assigned_user)
             
@@ -299,7 +305,7 @@ def complete(user_id:int, expense_id:int):
 @app.route("/my_expenses/<int:user_id>")
 def my_expenses(user_id:int):
     user = User.query.get_or_404(user_id)
-    user_expenses = Expense.query.filter_by(assigned_by = user.name).order_by(Expense.assigned_on).all()
+    user_expenses = Expense.query.filter_by(assigned_by_id=user.id).order_by(Expense.assigned_on).all()
 
     try:
         return render_template("my_expenses.html", user=user, expenses=user_expenses)
@@ -307,18 +313,26 @@ def my_expenses(user_id:int):
         print(f"Error: {e}")
         return f"ERROR: {e}"
 
-# bugs:
+# bugs(count: 2), customize (count: 1):
 # ----------------------------------------------------------
-# when assigning an expense, if a user has the same name as another user, it only assigns to the first user with that name
-# when a user has the same name as another user, its expenses are all mixed together
-
+# FIXED!!!!!! when assigning an expense, if a user has the same name as another user, it should only assigns to the first user with that name
+# however, when a user has the same name as another user, its expenses are all mixed together
 # is fixable by either: making sure no two users can have the same name
 # OR by changing the way expenses are assigned to users (by id instead of name)  <- perferrably this one
+
+# DONEEEE: BUG2: in the home page, when clicking on a name/edit/delete to go to their dashboard, you HAVE to click on the letters.
+# make it so that the whole box is clickable58
+
+# customize err message for required fields when adding/editing an expense  
+# cant do: make calendar pop up prettier when selecting due date
+# DONE: make edit, due by, and assign to boxes prettier
 # ----------------------------------------------------------
 
 # thing to add maybe:
-# music -> able to turn on and off
-# back button
+# DONE::: music -> able to turn on and off *yes-
+# back button *yes - try today ?
+# lady who changes expression on each page *maybe later
+
 
 # run env: .\env\Scripts\Activate
 # run app: python app.py

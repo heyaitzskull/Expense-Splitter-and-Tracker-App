@@ -25,7 +25,8 @@
         
         Assigned on: {{expense.assigned_on.strftime('%B %d, %Y')}}
         <br>
-        Assigned by: {{ expense.assigned_by}}
+        
+        Assigned by: {{ expense.creator.name}} 
         <br>
         
         Payment Due By: {{expense.due_by.strftime('%B %d, %Y')}}

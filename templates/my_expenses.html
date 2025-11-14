@@ -45,7 +45,9 @@
         {%else%}
 
             <p class="sub-title"> Looks like you haven't added any expenses yet </p>
-
+            <form action="/add_expense/{{user.id}}" method="GET">
+                <input type="submit", value="Add Expense", id="btn_add_expense">
+            </form>
         {%endif%}
 
     </div>
