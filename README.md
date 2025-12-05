@@ -56,6 +56,7 @@ bugs: when multiple users are assigned the same bill, when ONE user marks it com
 <img width="3840" height="1862" alt="image" src="https://github.com/user-attachments/assets/16613c16-642f-49f2-8247-e54e56e2d693" />
 
 **Able to turn music off if it's annoying**
+
 <img width="175" height="121" alt="image" src="https://github.com/user-attachments/assets/d39ebf11-e566-4e6e-99ad-01ae82e7260c" />
 
 
