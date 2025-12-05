@@ -25,7 +25,7 @@ cd expense-tracker
 
 **Create a virtual environment and install dependencies:** <br>
 python -m venv venv<br>
-source venv/bin/activate  (On Windows: venv\Scripts\activate)<br>
+venv\Scripts\activate (On Mac: source venv/bin/activate)<br>
 pip install -r requirements.txt
 
 **Run the Flask application:** <br>
@@ -46,13 +46,17 @@ bugs: when multiple users are assigned the same bill, when ONE user marks it com
 
 **Incomplete expense**
 <img width="3840" height="1872" alt="image" src="https://github.com/user-attachments/assets/a3c44898-484d-4e3b-a604-0cab4d277664" />
-**clicking on "Pay Now" opens up payment method buttons that redirect you to the appropriate site**
-<img width="1056" height="323" alt="image" src="https://github.com/user-attachments/assets/43550b1b-0a16-4380-baae-269ba5fc0ea9" />
+  **Clicking on "Pay Now" opens up payment method buttons that redirect you to the appropriate site**
+  <img width="1056" height="323" alt="image" src="https://github.com/user-attachments/assets/43550b1b-0a16-4380-baae-269ba5fc0ea9" />
+  
 **Complete expense**
 <img width="3840" height="1860" alt="image" src="https://github.com/user-attachments/assets/d252a7e6-8cef-4be9-a266-7858986ff41e" />
 
 ### Roommate assigned expenses
 <img width="3840" height="1862" alt="image" src="https://github.com/user-attachments/assets/16613c16-642f-49f2-8247-e54e56e2d693" />
+
+**Able to turn music off if it's annoying**
+<img width="175" height="121" alt="image" src="https://github.com/user-attachments/assets/d39ebf11-e566-4e6e-99ad-01ae82e7260c" />
 
 
 
